@@ -28,12 +28,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // create return true if success, else return false
+    // return true if success, else return false
     $userCreated = UserDAO::create($name, $lastname, $email, $password);
 
     if ($userCreated) {
-        // success, redirect to same page
-        header("Location: register");
+        echo '<div style="color: #9ACD32"> "User created";</div>';
+    } else {
+        echo '<div style="color: crimson"> "User with this email already exists :("</div>';
     }
 }
 
