@@ -1,0 +1,18 @@
+/*    reset    */
+@import "reset.css";
+/*    partials    */
+@import "partials/_variables.css";
+/*    typography    */
+@import "typography.css";
+/*    includes    */
+@import "includes/header.css";
+@import "includes/footer.css";
+/*    ui    */
+@import "ui/form.css";
+@import "ui/button.css";
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
