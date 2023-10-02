@@ -1,6 +1,6 @@
 >> #### ! Important !
-> - In `Util/DbUtil.php` class set up your database **_name_**, **_password_**, **_hostname_** and **_db name_**. 
-> - On first app start migrations run automatically
+> - In `Util/DbUtil.php` class you must set up your database **_name_**, **_password_**, **_hostname_** and **_db name_**. 
+> - On first `index.php` visit migrations run automatically. App using `$_SESSION` global variable to store migrations status and prevent running migrations if they already were done.
 
 >> Versions:
 > - PHP 8.1.0

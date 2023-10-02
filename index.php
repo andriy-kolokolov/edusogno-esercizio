@@ -1,10 +1,12 @@
 <?php
-
-use Util\DbUtil;
-require 'Util/DbUtil.php';
-DbUtil::runMigrations();
-
 session_start();
+
+if (!isset($_SESSION['migrations_completed'])) {
+    require 'Util/DbUtil.php';
+    \Util\DbUtil::runMigrations();
+    // Set a session variable to indicate that migrations have been completed
+    $_SESSION['migrations_completed'] = true;
+}
 ?>
 
 <!doctype html>
