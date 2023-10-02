@@ -1,5 +1,9 @@
 <?php
-include 'config/db_connection.php';
+
+use Util\DbUtil;
+require 'Util/DbUtil.php';
+DbUtil::runMigrations();
+
 session_start();
 ?>
 
@@ -15,13 +19,20 @@ session_start();
     <title>Edusogno</title>
 </head>
 <body>
+
 <?php include 'includes/header.php'; ?>
 
-<!--    ROUTER VIEWS    -->
-<?php include 'router.php'; ?>
+<main class="main-content-wrapper">
+    <div class="container">
+        <!--    ROUTER VIEWS    -->
+        <?php include 'router.php'; ?>
+    </div>
+</main>
 
 <?php include 'includes/footer.php'; ?>
+
 <script src="assets/js/script.js"></script>
 </body>
 </html>
+
 

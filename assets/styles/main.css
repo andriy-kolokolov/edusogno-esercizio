@@ -10,6 +10,8 @@
 /*    ui    */
 @import "ui/form.css";
 @import "ui/button.css";
+/*    layout    */
+@import "layout.css";
 
 body {
     background-color: var(--background-color);
