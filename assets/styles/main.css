@@ -12,7 +12,6 @@
 @import "ui/button.css";
 
 body {
-    font-family: var(--font-family);
     background-color: var(--background-color);
     color: var(--text-color);
 }
