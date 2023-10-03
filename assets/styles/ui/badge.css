@@ -1,0 +1,19 @@
+.badge {
+    width: fit-content;
+    padding: var(--badge-padding);
+    border-radius: var(--badge-border-radius);
+    font-size: var(--badge-font-size);
+    opacity: var(--link-initial-opacity);
+    transition: var(--link-transition);
+}
+
+.badge-email {
+    color: white;
+    background-color: var(--color-secondary);
+    cursor: pointer;
+}
+
+.badge:hover {
+    opacity: 1;
+}
+

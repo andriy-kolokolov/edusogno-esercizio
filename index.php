@@ -1,5 +1,7 @@
 <?php
 include 'config/app.php';
+//ini_set('display_errors', 1);
+//error_reporting(E_ALL);
 ?>
 
 <!doctype html>
@@ -17,16 +19,16 @@ include 'config/app.php';
 
 <div class="page-wrapper">
     <?php
-//    include 'config/debug.php'
+    //    include 'config/debug.php'
     ?>
     <?php include 'views/includes/header.php'; ?>
 
-    <main>
+    <div class="page-content">
         <div class="container">
             <!--    ROUTER VIEWS    -->
             <?php include 'router.php'; ?>
         </div>
-    </main>
+    </div>
 
     <?php include 'views/includes/footer.php'; ?>
 

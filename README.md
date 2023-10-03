@@ -1,5 +1,3 @@
-# Hi! This is a simple task manager with authentication.
-
 ## ! Important !
 - In `Util/DbUtil.php` class you must set up your database **_name_**, **_password_**, **_hostname_** and **_db name_**. 
 - You can uncomment `include 'config/debug.php'` in **_index.php_** for debug.

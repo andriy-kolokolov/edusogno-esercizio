@@ -2,9 +2,9 @@
     /*****************************************
         COLORS
     *****************************************/
-    --primary-color: #088FFA;
-    --secondary-color: #9ACD32;
-    --background-color: #f2f2f2;
+    --color-primary: #088FFA;
+    --color-secondary: #9ACD32;
+    --bg-primary-color: #f2f2f2;
 
     --alert-txt: rgba(0, 0, 0, 0.55);
     --alert-bg-success: #ACE1AF;
@@ -19,9 +19,13 @@
     /*****************************************
         LAYOUT
     *****************************************/
+    --page-content-margin-top: 20px;
+
+    --header-container-p: 20px 15px;
     --container-width: 1200px;
-    --container-p: 20px 15px;
-    --grid-gap: 15px;
+    --container-p: 0 15px;
+
+    --grid-gap: 45px;
 
     /*****************************************
         TRANSITIONS & ANIMATIONS
@@ -41,4 +45,14 @@
     *****************************************/
     --btn-padding: 6px 12px;
     --btn-border-radius: 6px;
+
+    --card-padding: 7px 15px;
+    --card-border-radius: 10px;
+    --card-bg-color: #fff;
+    --card-box-shadow: rgba(50, 50, 93, 0.1) 0px 6px 12px -2px, rgba(0, 0, 0, 0.1) 0px 3px 7px -3px;
+    --card-box-shadow-hover: rgba(50, 50, 93, 0.20) 0px 6px 16px -2px, rgba(0, 0, 0, 0.25) 0px 3px 14px -3px;
+
+    --badge-border-radius: 5px;
+    --badge-padding: 2px 5px;
+    --badge-font-size: 13px;
 }

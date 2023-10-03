@@ -1,0 +1,40 @@
+.card {
+    height: 100%;
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    background-color: var(--card-bg-color);
+    box-shadow: var(--card-box-shadow);
+    transition: var(--link-transition);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.card-title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.card-body__sub-title {
+    font-weight: 500;
+}
+
+.card-body {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(211, 211, 211, 0.5);
+    box-shadow: var(--card-box-shadow);
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.card-footer {
+    text-align: center;
+}
+
+.card:hover {
+    box-shadow: var(--card-box-shadow-hover);
+}

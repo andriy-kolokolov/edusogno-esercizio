@@ -5,9 +5,9 @@ use Util\Auth;
 ?>
 <header class="header">
     <div class="header__container">
-        <div class="header__logo-wrapper">
+        <a href="/dashboard" class="header__logo-wrapper">
             <img class="logo-wrapper__img" src="../../assets/img/logo.png" alt="logo image">
-        </div>
+        </a>
         <nav class="header__nav">
             <ul class="nav__list">
                 <li class="list__item">
@@ -19,8 +19,8 @@ use Util\Auth;
                         <a class="item__link" href="/dashboard">Dashboard</a>
                     </li>
                     <li class="list__item">
-                        <form class="item__logout-form" action="auth/logout" method="post">
-                            <input type="submit" name="logout" value="Logout">
+                        <form action="auth/logout" method="post">
+                            <input class="btn btn-danger" type="submit" name="logout" value="Logout">
                         </form>
                     </li>
                 <?php } else { ?>

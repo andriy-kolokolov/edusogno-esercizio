@@ -7,7 +7,7 @@ if (isset($_SESSION['login_status'])) {
 }
 ?>
 
-<h2>User Registration</h2>
+
 
 <?php if ($loginStatus == "fail") { ?>
     <div class="alert alert-fail">
@@ -15,18 +15,21 @@ if (isset($_SESSION['login_status'])) {
     </div>
 <?php } ?>
 
-<form action="auth/register" method="POST">
-    <label for="nome">Nome:</label>
-    <input type="text" name="name" required><br>
+<div class="page-content">
+    <h2>User Registration</h2>
+    <form action="auth/register" method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" name="name" required><br>
 
-    <label for="cognome">Cognome:</label>
-    <input type="text" name="lastname" required><br>
+        <label for="cognome">Cognome:</label>
+        <input type="text" name="lastname" required><br>
 
-    <label for="email">Email:</label>
-    <input type="email" name="email" required><br>
+        <label for="email">Email:</label>
+        <input type="email" name="email" required><br>
 
-    <label for="password">Password:</label>
-    <input type="password" name="password" required><br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" required><br>
 
-    <input type="submit" value="Register">
-</form>
+        <input type="submit" value="Register">
+    </form>
+</div>

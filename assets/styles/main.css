@@ -2,17 +2,16 @@
 @import "reset.css";
 /*    partials    */
 @import "partials/_variables.css";
+/*    layout    */
+@import "layout.css";
 /*    typography    */
 @import "typography.css";
 /*    includes    */
-@import "includes/header.css";
-@import "includes/footer.css";
+@import "includes/index.css";
 /*    import all from ui    */
 @import "ui/index.css";
-/*    layout    */
-@import "layout.css";
 
 body {
-    background-color: var(--background-color);
+    background-color: var(--bg-primary-color);
     color: var(--text-color);
 }

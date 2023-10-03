@@ -1,0 +1,33 @@
+.btn {
+    padding: var(--btn-padding);
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: var(--btn-border-radius);
+    opacity: var(--link-initial-opacity);
+    transition: var(--link-transition);
+    border-width: 0;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--text-color-light);
+}
+
+.btn-secondary {
+    background-color: var(--color-secondary);
+    color: var(--text-color-light);
+}
+
+.btn-danger {
+    background-color: var(--text-bg-danger);
+    color: var(--text-color-light);
+}
+
+.btn:hover {
+    opacity: 1;
+}
+
+.btn:active {
+    scale: 0.95;
+}
+

@@ -1,5 +1,3 @@
-<h2>User Login</h2>
-
 <?php
 
 use Util\Auth;
@@ -16,12 +14,15 @@ if (isset($_SESSION['login_status'])) {
     </div>
 <?php } ?>
 
-<form action="auth/login" method="POST">
-    <label for="email">Email:</label>
-    <input type="email" name="email" required><br>
+<div class="page-content">
+    <h2>User Login</h2>
+    <form action="auth/login" method="POST">
+        <label for="email">Email:</label>
+        <input type="email" name="email" required><br>
 
-    <label for="password">Password:</label>
-    <input type="password" name="password" required><br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" required><br>
 
-    <input type="submit" value="Login">
-</form>
+        <input type="submit" value="Login">
+    </form>
+</div>
