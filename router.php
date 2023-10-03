@@ -1,6 +1,9 @@
 <?php
 
+use Util\Auth;
+
 $request = $_SERVER['REQUEST_URI'];
+$authenticatedUser = Auth::user();
 
 switch ($request) {
     /**************************************************
@@ -12,18 +15,37 @@ switch ($request) {
         break;
 
     case '/login':
-        require __DIR__ . '/views/login.php';
+        // Check if the user is authenticated, and if so, redirect to the dashboard
+        if ($authenticatedUser) {
+            header('Location: /dashboard');
+            exit();
+        } else {
+            require __DIR__ . '/views/login.php';
+        }
         break;
 
     case '/register':
-        require __DIR__ . '/views/register.php';
+        // Check if the user is authenticated, and if so, redirect to the dashboard
+        if ($authenticatedUser) {
+            header('Location: /dashboard');
+            exit();
+        } else {
+            require __DIR__ . '/views/register.php';
+        }
         break;
 
     case '/dashboard':
-        require __DIR__ . '/views/dashboard.php';
+        // check if the user is authenticated before allowing access
+        if ($authenticatedUser) {
+            require __DIR__ . '/views/dashboard.php';
+        } else {
+            // redirect the user to the login page if not authenticated
+            header('Location: /login');
+            exit();
+        }
         break;
     /**************************************************
-     * AUTHENTICATION ROUTES
+     * AUTHENTICATION ACTION ROUTES
      **************************************************/
     case '/auth/register':
         require __DIR__ . '/actions/auth/register.php';
