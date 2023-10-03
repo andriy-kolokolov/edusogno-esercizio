@@ -1,8 +1,8 @@
 <?php
 session_start();
+require_once "autoload.php"; // to automate use of 'require' where needed
 
 if (!isset($_SESSION['migrations_completed'])) {
-    require 'Util/DbUtil.php';
     \Util\DbUtil::runMigrations();
     // Set a session variable to indicate that migrations have been completed
     $_SESSION['migrations_completed'] = true;

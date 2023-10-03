@@ -10,22 +10,22 @@
 </form>
 
 <?php
-use Dao\UserDAO;
 
-require "Dao/UserDAO.php";
+use Dao\UserDAOImpl;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     // validate user
-    $isValidUser = UserDAO::validateUser($email, $password);
+    $userDao = new UserDAOImpl();
+    $isValidUser = $userDao->validateUser($email, $password);
 
     if ($isValidUser) {
         // If success redirect to dashboard
         header("Location: dashboard");
     } else {
-        echo '<div style="color: crimson"> "Invalid email or password. Please try again.";</div>';
+        echo '<div style="color: crimson">Invalid email or password. Please try again.</div>';
     }
 }
 ?>
