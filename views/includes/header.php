@@ -1,6 +1,7 @@
 <?php
-// render links based on user auth status
-$authenticated = isset($_SESSION['user_id']);
+
+use Util\Auth;
+
 ?>
 <header>
     <div class="container">
@@ -8,9 +9,17 @@ $authenticated = isset($_SESSION['user_id']);
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/login">Log In</a></li>
-                <li><a href="/register">Register</a></li>
-                <li><a href="/dashboard">Dashboard</a></li>
+                <?php if (Auth::user()) { ?>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li>
+                        <form action="auth/logout" method="post">
+                            <input type="submit" name="logout" value="Logout">
+                        </form>
+                    </li>
+                <?php } else { ?>
+                    <li><a href="/login">Log In</a></li>
+                    <li><a href="/register">Register</a></li>
+                <?php } ?>
             </ul>
         </nav>
     </div>

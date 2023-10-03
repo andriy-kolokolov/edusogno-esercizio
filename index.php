@@ -1,5 +1,6 @@
 <?php
-include 'config/app.php'
+include 'config/app.php';
+include 'config/debug.php'
 ?>
 
 <!doctype html>

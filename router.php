@@ -32,6 +32,10 @@ switch ($request) {
     case '/auth/login':
         require __DIR__ . '/actions/auth/login.php';
         break;
+
+    case '/auth/logout':
+        require __DIR__ . '/actions/auth/logout.php';
+        break;
     /**************************************************
     * OTHER
     **************************************************/

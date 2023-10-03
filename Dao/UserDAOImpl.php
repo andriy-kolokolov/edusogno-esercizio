@@ -2,23 +2,28 @@
 
 namespace Dao;
 
+use Exception;
+use Model\User;
 use Util\DbUtil;
 
 class UserDAOImpl implements UserDAO
 {
-    // using bind_param() to protect application from SQL injection
-    public function create(string $name, string $lastname, string $email, string $password): bool
+    /**
+     * @throws Exception
+     */
+    public function createGetUser(string $name, string $lastname, string $email, string $password): User|bool
     {
         $conn = DbUtil::getConnection();
         // check by email if the user already exists
         $checkSql = "SELECT email FROM edusogno_db.utenti WHERE email = ?";
         $checkStmt = $conn->prepare($checkSql);
+        // using bind_param() to protect from SQL injection
         $checkStmt->bind_param("s", $email);
         $checkStmt->execute();
         $checkStmt->store_result();
 
         if ($checkStmt->num_rows > 0) {
-            // if exists, return false
+            // if user exists, return false
             $checkStmt->close();
             return false;
         }
@@ -31,10 +36,10 @@ class UserDAOImpl implements UserDAO
 
         if ($insertStmt->execute()) {
             $insertStmt->close();
-            return true;
+            return new User($name, $lastname, $email, $hashedPassword);
         } else {
             $insertStmt->close();
-            return false;
+            throw new Exception('Error occurred inserting user in database');
         }
     }
 
@@ -48,21 +53,21 @@ class UserDAOImpl implements UserDAO
         return 0;
     }
 
-    public function validateUser(string $email, string $password): bool
+    public function validateGetUser(string $email, string $password): ?User
     {
         $conn = DbUtil::getConnection();
-        $stmt = $conn->prepare("SELECT email, password FROM edusogno_db.utenti WHERE email = ?");
+        $stmt = $conn->prepare("SELECT nome, cognome, email, password FROM edusogno_db.utenti WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
-        $stmt->bind_result($dbEmail, $dbPassword);
+        $stmt->bind_result($name, $lastname, $dbEmail, $hashedDbPassword);
         $stmt->fetch();
         $stmt->close();
         // verify hashed password in db
-        if (password_verify($password, $dbPassword)) {
-            // if password matches db record, return true
-            return true;
+        if (password_verify($password, $hashedDbPassword)) {
+            // if password matches db record, return User object
+            return new User($name, $lastname, $dbEmail, $hashedDbPassword);
         } else {
-            return false;
+            return null;
         }
     }
 }

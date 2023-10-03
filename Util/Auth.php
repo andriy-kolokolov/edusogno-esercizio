@@ -3,6 +3,7 @@
 namespace Util;
 
 use Dao\UserDAOImpl;
+use Model\User;
 
 class Auth
 {
@@ -13,13 +14,14 @@ class Auth
     {
         // validate user
         $userDao = new UserDAOImpl();
-        $isValidUser = $userDao->validateUser($email, $password);
+        $user = $userDao->validateGetUser($email, $password);
 
-        if ($isValidUser) {
+        if ($user) {
             // regenerate the session ID to prevent session fixation attacks
             session_regenerate_id(true);
             $_SESSION['login_status'] = self::SESSION_STATUS_SUCCESS;
             $_SESSION['login_message'] = "login success, user authenticated";
+            $_SESSION['user'] = $user;
             return true;
         } else {
             $_SESSION['login_status'] = self::SESSION_STATUS_FAIL;
@@ -31,18 +33,35 @@ class Auth
     public static function register(string $name, string $lastname, string $email, string $password): bool
     {
         $userDao = new UserDAOImpl();
-        // return true if success, else return false if user already exists
-        $userCreated = $userDao->create($name, $lastname, $email, $password);
+        // check if user exists, create and return User object if exists, else return false.
+        $user = $userDao->createGetUser($name, $lastname, $email, $password);
 
-        if ($userCreated) {
+        if ($user) {
             session_regenerate_id(true);
             $_SESSION['login_status'] = self::SESSION_STATUS_SUCCESS;
             $_SESSION['login_message'] = "Hello, " . $name . ' ' . $lastname . ". Welcome to your dashboard!";
+            $_SESSION['user'] = $user;
             return true;
         } else {
             $_SESSION['login_status'] = self::SESSION_STATUS_FAIL;
             $_SESSION['login_message'] = "User with email " . $email . " already exists. Try another one :) .";
             return false;
         }
+    }
+
+    public static function logout(): void
+    {
+        unset($_SESSION['user']);
+        session_destroy();
+    }
+
+    public static function changePassword(string $email, string $password)
+    {
+        // TODO: implement change password logic
+    }
+
+    public static function user(): ?User
+    {
+        return $_SESSION['user'] ?? null;
     }
 }
