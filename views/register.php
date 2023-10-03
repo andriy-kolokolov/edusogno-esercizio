@@ -1,5 +1,23 @@
+<?php
+if (isset($_SESSION['login_status'])) {
+    $loginStatus = htmlspecialchars($_SESSION['login_status']);
+    $loginMessage = htmlspecialchars($_SESSION['login_message']);
+    // clean session login data from $_SESSION
+    unset($_SESSION['login_message']);
+    unset($_SESSION['login_status']);
+}
+?>
+
 <h2>User Registration</h2>
-<form method="POST">
+
+<?php
+// render alert if registration fails
+if ($loginStatus == "fail"){
+    echo '<div class="alert alert-fail" style="color: crimson">' . htmlspecialchars($loginMessage) . '</div>';
+}
+?>
+
+<form action="auth/register" method="POST">
     <label for="nome">Nome:</label>
     <input type="text" name="name" required><br>
 
@@ -14,26 +32,3 @@
 
     <input type="submit" value="Register">
 </form>
-
-<?php
-
-use Dao\UserDAOImpl;
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // get user input from the form
-    $name = $_POST['name'];
-    $lastname = $_POST['lastname'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    // return true if success, else return false
-    $userDao = new UserDAOImpl();
-    $userCreated = $userDao->create($name, $lastname, $email, $password);
-
-    if ($userCreated) {
-        header("Location: dashboard");
-    } else {
-        echo '<div style="color: crimson">User with this email already exists :(</div>';
-    }
-}
-?>

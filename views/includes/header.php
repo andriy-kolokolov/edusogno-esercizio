@@ -1,3 +1,7 @@
+<?php
+// render links based on user auth status
+$authenticated = isset($_SESSION['user_id']);
+?>
 <header>
     <div class="container">
         <h1>Edusogno</h1>

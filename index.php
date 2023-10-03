@@ -1,12 +1,5 @@
 <?php
-session_start();
-require_once "autoload.php"; // to automate use of 'require' where needed
-
-if (!isset($_SESSION['migrations_completed'])) {
-    \Util\DbUtil::runMigrations();
-    // Set a session variable to indicate that migrations have been completed
-    $_SESSION['migrations_completed'] = true;
-}
+include 'config/app.php'
 ?>
 
 <!doctype html>
@@ -22,7 +15,7 @@ if (!isset($_SESSION['migrations_completed'])) {
 </head>
 <body>
 
-<?php include 'includes/header.php'; ?>
+<?php include 'views/includes/header.php'; ?>
 
 <main class="main-content-wrapper">
     <div class="container">
@@ -31,7 +24,7 @@ if (!isset($_SESSION['migrations_completed'])) {
     </div>
 </main>
 
-<?php include 'includes/footer.php'; ?>
+<?php include 'views/includes/footer.php'; ?>
 
 <script src="assets/js/script.js"></script>
 </body>
