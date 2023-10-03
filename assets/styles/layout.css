@@ -1,25 +1,20 @@
 .page-wrapper {
-    background-color: lightgrey;
+    /*background-color: lightgrey;*/
     height: 100vh;
     overflow: auto;
 }
 
 .page-wrapper .container {
-    max-width: var(--container);
     height: 100%;
+    max-width: var(--container-width);
     padding: var(--container-p);
-    margin: 0 auto;
-    background-color: slategrey;
-
-    display: flex;
-    flex-direction: column;
+    margin: 25px auto 0 auto;
+    /*background-color: slategrey;*/
 }
 
 .page-wrapper .container .grid {
-    justify-content: center;
-
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;flex-wrap: wrap;
     gap: var(--grid-gap);
 }
 
@@ -34,7 +29,7 @@
     --col-1: calc((100% / 1) - var(--grid-gap));
 
     flex-basis: var(--col-1); /* Default flex-basis value */
-    flex-grow: 0;
+    flex-grow: 1;
 
     /* media query for phones (360px and up) */
     @media (min-width: 360px) {
@@ -53,7 +48,7 @@
 
     /* media query for larger tablets (1000px and up) */
     @media (min-width: 1000px) {
-        flex-basis: var(--col-3);
+        flex-basis: var(--col-4);
     }
 
     /* media query for desktops (1200px and up) */
