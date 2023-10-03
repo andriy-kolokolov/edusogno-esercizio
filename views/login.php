@@ -15,7 +15,7 @@ if (isset($_SESSION['login_status'])) {
 <?php } ?>
 
 <div class="page-content">
-    <h2>User Login</h2>
+    <h2 class="page-title">User Login</h2>
     <form action="auth/login" method="POST">
         <label for="email">Email:</label>
         <input type="email" name="email" required><br>

@@ -55,4 +55,6 @@
     --badge-border-radius: 5px;
     --badge-padding: 2px 5px;
     --badge-font-size: 13px;
+
+    --input-active-box-shadow:rgba(8, 143, 250, 0.5) 0px 6px 12px -2px;
 }

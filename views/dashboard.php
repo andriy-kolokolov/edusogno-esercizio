@@ -21,7 +21,7 @@ $counter = 0;
 ?>
 
 <div class="page-content">
-    <h1>DASHBOARD VIEW</h1>
+    <h1 class="page-title">DASHBOARD</h1>
     <div class="grid">
         <?php
         foreach ($allEvents as $event) {

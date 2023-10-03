@@ -4,3 +4,8 @@ body {
     font-family: var(--font-family);
     line-height: inherit; /*    to fix text overlap lines    */
 }
+
+.page-title {
+    margin-bottom: 15px;
+    text-align: center;
+}

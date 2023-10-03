@@ -1,3 +1,3 @@
 <div class="page-content">
-    <h1>WELCOME VIEW</h1>
+    <h1 class="page-title">WELCOME VIEW</h1>
 </div>

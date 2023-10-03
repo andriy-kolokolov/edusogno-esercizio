@@ -1,3 +1,8 @@
+.btn-wrap {
+    display: flex;
+    justify-content: center;
+}
+
 .btn {
     padding: var(--btn-padding);
     cursor: pointer;
@@ -6,6 +11,7 @@
     opacity: var(--link-initial-opacity);
     transition: var(--link-transition);
     border-width: 0;
+    font-size: 18px;
 }
 
 .btn-primary {

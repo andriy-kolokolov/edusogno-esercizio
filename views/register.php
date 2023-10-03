@@ -11,25 +11,29 @@ if (isset($_SESSION['login_status'])) {
 
 <?php if ($loginStatus == "fail") { ?>
     <div class="alert alert-fail">
-        <div class="alert__message">User with email "' . $existingEmail . '" already exists, try another one :)</div>
+        <div class="alert__message">User with email '<?php echo $existingEmail; ?>' already exists, try another one.
+        </div>
     </div>
 <?php } ?>
 
 <div class="page-content">
-    <h2>User Registration</h2>
-    <form action="auth/register" method="POST">
-        <label for="nome">Nome:</label>
-        <input type="text" name="name" required><br>
+    <h2 class="page-title">User Registration</h2>
 
-        <label for="cognome">Cognome:</label>
-        <input type="text" name="lastname" required><br>
+    <form class="form" action="auth/register" method="POST">
+        <label class="form-label" for="name">Name:</label>
+        <input class="form-input" id="name" type="text" name="name" placeholder="Name" required>
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" required><br>
+        <label class="form-label" for="lastname">Lastname:</label>
+        <input class="form-input" id="lastname" type="text" name="lastname" placeholder="Lastname" required>
 
-        <label for="password">Password:</label>
-        <input type="password" name="password" required><br>
+        <label class="form-label" for="email">Email:</label>
+        <input class="form-input" id="email" type="email" name="email" placeholder="Email" required>
 
-        <input type="submit" value="Register">
+        <label class="form-label" for="password">Password:</label>
+        <input class="form-input" id="password" type="password" name="password" placeholder="Password" required>
+
+        <div class="btn-wrap">
+            <input class="btn btn-primary" type="submit" value="Register">
+        </div>
     </form>
 </div>
