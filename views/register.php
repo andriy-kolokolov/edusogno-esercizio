@@ -1,21 +1,19 @@
 <?php
 if (isset($_SESSION['login_status'])) {
     $loginStatus = htmlspecialchars($_SESSION['login_status']);
-    $loginMessage = htmlspecialchars($_SESSION['login_message']);
-    // clean session login data from $_SESSION
-    unset($_SESSION['login_message']);
+    $existingEmail = htmlspecialchars($_SESSION['existing_email']);
     unset($_SESSION['login_status']);
+    unset($_SESSION['existing_email']);
 }
 ?>
 
 <h2>User Registration</h2>
 
-<?php
-// render alert if registration fails
-if ($loginStatus == "fail"){
-    echo '<div class="alert alert-fail" style="color: crimson">' . htmlspecialchars($loginMessage) . '</div>';
-}
-?>
+<?php if ($loginStatus == "fail") { ?>
+    <div class="alert alert-fail">
+        <div class="alert__message">User with email "' . $existingEmail . '" already exists, try another one :)</div>
+    </div>
+<?php } ?>
 
 <form action="auth/register" method="POST">
     <label for="nome">Nome:</label>

@@ -20,12 +20,10 @@ class Auth
             // regenerate the session ID to prevent session fixation attacks
             session_regenerate_id(true);
             $_SESSION['login_status'] = self::SESSION_STATUS_SUCCESS;
-            $_SESSION['login_message'] = "login success, user authenticated";
             $_SESSION['user'] = $user;
             return true;
         } else {
             $_SESSION['login_status'] = self::SESSION_STATUS_FAIL;
-            $_SESSION['login_message'] = "Invalid email or password. Please try again.";
             return false;
         }
     }
@@ -39,12 +37,10 @@ class Auth
         if ($user) {
             session_regenerate_id(true);
             $_SESSION['login_status'] = self::SESSION_STATUS_SUCCESS;
-            $_SESSION['login_message'] = "Hello, " . $name . ' ' . $lastname . ". Welcome to your dashboard!";
             $_SESSION['user'] = $user;
             return true;
         } else {
             $_SESSION['login_status'] = self::SESSION_STATUS_FAIL;
-            $_SESSION['login_message'] = "User with email " . $email . " already exists. Try another one :) .";
             return false;
         }
     }

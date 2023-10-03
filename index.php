@@ -1,6 +1,5 @@
 <?php
 include 'config/app.php';
-include 'config/debug.php'
 ?>
 
 <!doctype html>
@@ -16,16 +15,22 @@ include 'config/debug.php'
 </head>
 <body>
 
-<?php include 'views/includes/header.php'; ?>
+<div class="page-wrapper">
+    <?php
+//    include 'config/debug.php'
+    ?>
+    <?php include 'views/includes/header.php'; ?>
 
-<main class="main-content-wrapper">
-    <div class="container">
-        <!--    ROUTER VIEWS    -->
-        <?php include 'router.php'; ?>
-    </div>
-</main>
+    <main>
+        <div class="container">
+            <!--    ROUTER VIEWS    -->
+            <?php include 'router.php'; ?>
+        </div>
+    </main>
 
-<?php include 'views/includes/footer.php'; ?>
+    <?php include 'views/includes/footer.php'; ?>
+
+</div>
 
 <script src="assets/js/script.js"></script>
 </body>

@@ -5,7 +5,11 @@
     --primary-color: #088FFA;
     --secondary-color: #9ACD32;
     --background-color: #f2f2f2;
-    --text-color: #333;
+
+    --alert-txt: rgba(0, 0, 0, 0.55);
+    --alert-bg-success: #ACE1AF;
+    --alert-bg-fail: #f29c9e;
+    --alert-bg-warning: #FFCA4B;
 
     /*****************************************
         FONTS
@@ -15,10 +19,18 @@
     /*****************************************
         LAYOUT
     *****************************************/
-    --container: 1000px;
+    --container: 1200px;
+    --container-p: 10px 12px;
+    --grid-gap: 15px;
 
     /*****************************************
         TRANSITIONS & ANIMATIONS
     *****************************************/
     --link-transition: .2s;
+
+    /*****************************************
+        TYPOGRAPHY
+    *****************************************/
+    --text-color: #333;
+    --text-color-light: #f2f2f2;
 }

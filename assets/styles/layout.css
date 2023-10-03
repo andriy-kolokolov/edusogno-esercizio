@@ -1,4 +1,63 @@
-.container {
-    width: 1200px;
+.page-wrapper {
+    background-color: lightgrey;
+    height: 100vh;
+    overflow: auto;
+}
+
+.page-wrapper .container {
+    max-width: var(--container);
+    height: 100%;
+    padding: var(--container-p);
     margin: 0 auto;
+    background-color: slategrey;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.page-wrapper .container .grid {
+    justify-content: center;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--grid-gap);
+}
+
+.grid__item {
+    /*background-color: darkseagreen;*/
+
+    --col-12: calc((100% / 12) - var(--grid-gap));
+    --col-6: calc((100% / 6) - var(--grid-gap));
+    --col-4: calc((100% / 4) - (var(--grid-gap)));
+    --col-3: calc((100% / 3) - var(--grid-gap));
+    --col-2: calc((100% / 2) - var(--grid-gap));
+    --col-1: calc((100% / 1) - var(--grid-gap));
+
+    flex-basis: var(--col-1); /* Default flex-basis value */
+    flex-grow: 0;
+
+    /* media query for phones (360px and up) */
+    @media (min-width: 360px) {
+        flex-basis: var(--col-1);
+    }
+
+    /* media query for phones - tablet (600px and up) */
+    @media (min-width: 600px) {
+        flex-basis: var(--col-2);
+    }
+
+    /* media query for tablets (768px and up) */
+    @media (min-width: 768px) {
+        flex-basis: var(--col-2);
+    }
+
+    /* media query for larger tablets (1000px and up) */
+    @media (min-width: 1000px) {
+        flex-basis: var(--col-3);
+    }
+
+    /* media query for desktops (1200px and up) */
+    @media (min-width: 1200px) {
+        flex-basis: var(--col-4);
+    }
 }

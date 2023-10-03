@@ -7,9 +7,8 @@
 /*    includes    */
 @import "includes/header.css";
 @import "includes/footer.css";
-/*    ui    */
-@import "ui/form.css";
-@import "ui/button.css";
+/*    import all from ui    */
+@import "ui/index.css";
 /*    layout    */
 @import "layout.css";
 

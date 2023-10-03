@@ -1,21 +1,20 @@
+<h2>User Login</h2>
+
 <?php
+
+use Util\Auth;
+
 if (isset($_SESSION['login_status'])) {
     $loginStatus = htmlspecialchars($_SESSION['login_status']);
-    $loginMessage = htmlspecialchars($_SESSION['login_message']);
-    // clean session login data from $_SESSION
-    unset($_SESSION['login_message']);
     unset($_SESSION['login_status']);
 }
 ?>
 
-<h2>User Login</h2>
-
-<?php
-// render alert if login fails
-if ($loginStatus == "fail"){
-    echo '<div class="alert alert-fail" style="color: crimson">' . htmlspecialchars($loginMessage) . '</div>';
-}
-?>
+<?php if ($loginStatus == "fail") { ?>
+    <div class="alert alert-fail">
+        <div class="alert__message">Credentials don't match our records..</div>
+    </div>
+<?php } ?>
 
 <form action="auth/login" method="POST">
     <label for="email">Email:</label>

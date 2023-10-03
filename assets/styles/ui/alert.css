@@ -1,0 +1,26 @@
+@import "../partials/_variables.css";
+
+.alert {
+    border-radius: 7px;
+    padding: 7px 16px 7px 10px;
+    margin: 15px 0;
+    color: var(--alert-txt);
+}
+
+.alert__message {
+    font-weight: 500;
+}
+
+.alert.alert-success {
+    background-color: var(--alert-bg-success);
+}
+
+.alert.alert-fail {
+    background-color: var(--alert-bg-fail);
+}
+
+.alert.alert-warning {
+    background-color: var(--alert-bg-warning);
+}
+
+

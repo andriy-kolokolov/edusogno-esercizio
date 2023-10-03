@@ -8,10 +8,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // if login success/fail set accordingly : $_SESSION['login_status'] and $_SESSION['login_message']
+    // if login success/fail set accordingly : $_SESSION['login_status']
     if (Auth::register($name, $lastname, $email, $password)) {
         header("Location: /dashboard");
     } else {
+        $_SESSION['existing_email'] = $email;
         header("Location: /register");
     }
     exit(); // ensure script will not be executed after redirect
