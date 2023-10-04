@@ -1,33 +1,75 @@
-.form {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f5f5f5;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.form-wrapper {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
 }
 
-.form-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
+.form {
+    margin-top: 15px;
+    min-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    padding: var(--form-padding);
+    border-radius: var(--from-border-radius);
+    border: 1px solid var(--form-border-color);
+    box-shadow: var(--form-box-shadow);
+}
+
+.form-title {
+    text-align: center;
+}
+
+.form-group {
+    position: relative;
+    margin-top: 30px;
+    display: flex;
+    width: 100% ;
 }
 
 .form-input {
+    width: 100%;
     outline: none;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid rgba(8, 143, 250, 0.3);
-    border-radius: 3px;
-    display: flex;
-    transition: var(--link-transition);
+    padding: 12px 15px;
+    font-size: 17px;
+    border-radius: var(--form-input-border-radius);
+    border: 1px solid rgba(8, 143, 250, 0.4);
+    background-color: transparent;
+    transition: var(--link-transition) all ease-in-out;
+}
+
+.form-input::placeholder {
+    color: transparent;
+}
+
+.form-input:focus {
+    border-color: rgba(8, 143, 250, 0.5);
 }
 
 .form-input:focus-visible {
-    box-shadow: var(--input-active-box-shadow);
+    box-shadow: var(--from-input-active-box-shadow);
 }
 
-.
+.form-label {
+    position: absolute;
+    top: 9px;
+    left: 0;
+    margin-left: 12px;
+    color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    transition: var(--link-transition) all ease;
+}
+
+.form-input:focus + .form-label,
+.form-input:not(:placeholder-shown) + .form-label {
+    font-size: 14px;
+    background-color: var(--bg-primary-color);
+    transform: translate(5px, -20px);
+}
+
+.form-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+

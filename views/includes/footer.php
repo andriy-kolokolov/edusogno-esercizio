@@ -1,5 +1,5 @@
 <footer>
     <div class="container">
-        hello from footer
+<!--        hello from footer-->
     </div>
 </footer>

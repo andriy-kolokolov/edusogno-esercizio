@@ -4,14 +4,16 @@
 }
 
 .btn {
+    font-family: var(--font-family);
+    text-decoration: none;
     padding: var(--btn-padding);
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 500;
     border-radius: var(--btn-border-radius);
     opacity: var(--link-initial-opacity);
     transition: var(--link-transition);
     border-width: 0;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .btn-primary {

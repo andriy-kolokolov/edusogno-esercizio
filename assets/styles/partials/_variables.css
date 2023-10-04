@@ -5,11 +5,7 @@
     --color-primary: #088FFA;
     --color-secondary: #9ACD32;
     --bg-primary-color: #f2f2f2;
-
-    --alert-txt: rgba(0, 0, 0, 0.55);
-    --alert-bg-success: #ACE1AF;
-    --alert-bg-fail: #f29c9e;
-    --alert-bg-warning: #FFCA4B;
+    --border-color-light: rgba(0, 0, 0, 0.3);
 
     /*****************************************
         FONTS
@@ -43,6 +39,11 @@
     /*****************************************
         UI
     *****************************************/
+    --alert-txt: rgba(0, 0, 0, 0.55);
+    --alert-bg-success: #ACE1AF;
+    --alert-bg-fail: #f29c9e;
+    --alert-bg-warning: #FFCA4B;
+
     --btn-padding: 6px 12px;
     --btn-border-radius: 6px;
 
@@ -56,5 +57,10 @@
     --badge-padding: 2px 5px;
     --badge-font-size: 13px;
 
-    --input-active-box-shadow:rgba(8, 143, 250, 0.5) 0px 6px 12px -2px;
+    --form-padding: 20px 15px;
+    --from-border-radius: 10px;
+    --form-border-color: rgba(0, 0, 6, 0.1);
+    --form-box-shadow: rgba(50, 50, 93, 0.1) 0px 6px 12px -2px;
+    --from-input-active-box-shadow:rgba(8, 143, 250, 0.5) 0px 6px 12px -2px;
+    --form-input-border-radius: 7px;
 }

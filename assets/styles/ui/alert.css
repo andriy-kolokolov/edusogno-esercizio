@@ -1,9 +1,9 @@
 @import "../partials/_variables.css";
 
 .alert {
+    width: 100%;
     border-radius: 7px;
     padding: 7px 16px 7px 10px;
-    margin: 15px 0;
     color: var(--alert-txt);
 }
 
