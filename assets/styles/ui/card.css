@@ -1,5 +1,6 @@
 .card {
     height: 100%;
+    min-width: 200px;
     padding: var(--card-padding);
     border-radius: var(--card-border-radius);
     background-color: var(--card-bg-color);

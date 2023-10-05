@@ -64,5 +64,5 @@
 .form-input:not(:placeholder-shown) + .form-label {
     font-size: 14px;
     background-color: var(--bg-primary-color);
-    transform: translate(5px, -20px);
+    transform: translate(5px, -24px);
 }

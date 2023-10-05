@@ -58,6 +58,17 @@ switch ($request) {
             exit();
         }
         break;
+
+    case '/event-create':
+        if ($authenticatedUser) {
+            require __DIR__ . '/views/event/create.php';
+        } else {
+            // redirect the user to the login page if not authenticated
+            header('Location: /login');
+            exit();
+        }
+        break;
+
     /**************************************************
      * AUTHENTICATION ACTION ROUTES
      **************************************************/
@@ -81,6 +92,15 @@ switch ($request) {
         require __DIR__ . '/actions/auth/change-password.php';
         break;
 
+    case '/event/store':
+        if ($authenticatedUser) {
+            require __DIR__ . '/actions/event/store.php';
+        } else {
+            // redirect the user to the login page if not authenticated
+            header('Location: /login');
+            exit();
+        }
+        break;
     /**************************************************
      * Handling URLs with a "token" parameter
      *************************************************/

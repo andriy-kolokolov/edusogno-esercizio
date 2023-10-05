@@ -10,22 +10,25 @@ use Util\DbUtil;
 
 class EventDAOImpl implements EventDAO
 {
-    /**
-     * @throws Exception
-     */
-    public function createGetEvent(string $attendees, string $eventName, string $eventDate): ?Event
-    {
-        $conn = DbUtil::getConnection();
-        $sql = "INSERT INTO edusogno_db.eventi (attendees, nome_evento, data_evento) VALUES (?, ?, ?)";
-        $insertStmt = $conn->prepare($sql);
-        $insertStmt->bind_param("sss", $attendees, $eventName, $eventDate);
 
-        if ($insertStmt->execute()) {
-            $insertStmt->close();
-            return new Event($attendees, $eventName, $eventDate);
-        } else {
-            $insertStmt->close();
-            throw new Exception('Error occurred inserting event in database');
+    public function create(string $attendees, string $eventName, string $eventDate): bool
+    {
+        try {
+            $conn = DbUtil::getConnection();
+            $sql = "INSERT INTO edusogno_db.eventi (attendees, nome_evento, data_evento) VALUES (?, ?, ?)";
+            $insertStmt = $conn->prepare($sql);
+            $insertStmt->bind_param("sss", $attendees, $eventName, $eventDate);
+
+            if ($insertStmt->execute()) {
+                $insertStmt->close();
+                return true;
+            } else {
+                $insertStmt->close();
+                return false;
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return false;
         }
     }
 
@@ -42,7 +45,7 @@ class EventDAOImpl implements EventDAO
     public function getAllEvents(): array
     {
         $connection = DbUtil::getConnection();
-        $query = "SELECT * FROM edusogno_db.eventi";
+        $query = "SELECT * FROM edusogno_db.eventi ORDER BY id DESC";
         $result = $connection->query($query);
 
         if (!$result) {

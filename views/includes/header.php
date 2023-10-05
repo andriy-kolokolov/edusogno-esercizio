@@ -10,9 +10,6 @@ use Util\Auth;
         </a>
         <nav class="header__nav">
             <ul class="nav__list">
-                <li class="list__item">
-                    <a class="item__link" href="/">Home</a>
-                </li>
                 <!-- Authenticated user navigation -->
                 <?php if (Auth::user()) { ?>
                     <li class="list__item">
@@ -28,6 +25,9 @@ use Util\Auth;
                     </li>
                 <?php } else { ?>
                     <!-- Not authenticated user navigation -->
+                    <li class="list__item">
+                        <a class="item__link" href="/">Home</a>
+                    </li>
                     <li class="list__item">
                         <a class="item__link" href="/login">Log In</a>
                     </li>

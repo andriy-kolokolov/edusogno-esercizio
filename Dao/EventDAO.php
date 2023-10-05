@@ -6,7 +6,7 @@ use Model\Event;
 
 interface EventDAO
 {
-    public function createGetEvent(string $attendees, string $eventName, string $eventDate): ?Event;
+//    public function create(string $attendees, string $eventName, string $eventDate): ?Event;
 
     public function update(int $eventId, string $attendees, string $eventName, string $eventDate);
 

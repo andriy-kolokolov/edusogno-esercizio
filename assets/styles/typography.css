@@ -15,3 +15,7 @@ body {
     align-items: center;
     color: var(--color-primary);
 }
+
+.txt-sm {
+    font-size: 14px;
+}

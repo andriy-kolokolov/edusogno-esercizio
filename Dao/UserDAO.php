@@ -16,5 +16,5 @@ interface UserDAO
 
     public function getUserByPasswordResetToken($token): ?User;
 
-//    public function changePassword(string $userEmail, string $newPassword): bool;
+    public function changePassword(string $userToken, string $newPassword): bool;
 }
