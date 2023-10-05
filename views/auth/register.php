@@ -7,7 +7,7 @@ unset($_SESSION['existing_email']);
 
 <div class="page-content">
     <div class="form-wrapper">
-        <form class="form" action="auth/register" method="POST">
+        <form id="form-submit" class="form" action="auth/register" method="POST">
             <h2 class="form-title">User Registration</h2>
             <?php if ($loginStatus == "fail") { ?>
                 <div class="form-group">
@@ -37,9 +37,13 @@ unset($_SESSION['existing_email']);
             <div class="form-group">
                 <div class="form-buttons d-flex justify-between">
                     <a class="btn btn-primary" href="/login">Go to Log In</a>
-                    <input class="btn btn-primary" type="submit" value="Register">
+                    <button id="btn-submit" class="btn btn-primary" type="submit">
+                        <span>Register</span>
+                    </button>
                 </div>
             </div>
         </form>
     </div>
+
+    <script src="../../assets/js/formSubmit.js"></script>
 </div>

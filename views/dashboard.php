@@ -5,8 +5,15 @@ use Util\Auth;
 
 $loginStatus = $_SESSION['login_status'] ?? null;
 $eventCreateStatus = $_SESSION['event-create-status'] ?? null;
+$updateEventStatus = $_SESSION['event-update-status'] ?? null;
+$updatedEventName = $_SESSION['updated-event'] ?? null;
+$deleteEventStatus = $_SESSION['event-delete-status'] ?? null;
+$deletedEventName = $_SESSION['deleted-event'] ?? null;
+
 unset($_SESSION['login_status']);
+unset($_SESSION['event-update-status']);
 unset($_SESSION['event-create-status']);
+unset($_SESSION['event-delete-status']);
 
 $eventDAO = new EventDAOImpl();
 $allEvents = $eventDAO->getAllEvents();
@@ -38,6 +45,34 @@ $allEvents = $eventDAO->getAllEvents();
         </div>
     <?php } ?>
 
+    <?php if ($updateEventStatus == "success") { ?>
+        <div class="form-group">
+            <div class="alert alert-success">
+                <div class="alert__message">
+                    Event <strong>"<?php echo $updatedEventName ?>"</strong> updated successfully
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+
+    <?php if ($deleteEventStatus == "success") { ?>
+        <div class="form-group">
+            <div class="alert alert-success">
+                <div class="alert__message">
+                    Event <strong>"<?php echo $deletedEventName ?>"</strong> deleted successfully
+                </div>
+            </div>
+        </div>
+    <?php } else if ($deleteEventStatus == "fail") { ?>
+        <div class="form-group">
+            <div class="alert alert-fail">
+                <div class="alert__message">
+                    Failed to delete event :(
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+
     <div class="grid mt-3">
         <?php
         foreach ($allEvents as $event) {
@@ -56,10 +91,26 @@ $allEvents = $eventDAO->getAllEvents();
                     </div>
 
                     <div class="card-footer"><strong>Event Date:</strong> <?php echo $event->getEventDate(); ?></div>
+                    <div class="d-flex justify-around">
+                        <form id="form-submit" method="POST" action="/event-update">
+                            <input type="hidden" name="event_id" value="<?php echo $event->getEventId(); ?>">
+                            <button id="btn-submit" type="submit" class="btn btn-sm btn-primary ">
+                                <span">Update</span>
+                            </button>
+                        </form>
+                        <form id="form-submit-1" method="POST" action="/event/delete">
+                            <input type="hidden" name="event_id" value="<?php echo $event->getEventId(); ?>">
+                            <button id="btn-submit-1" type="submit" class="btn btn-sm btn-danger">
+                                <span>Delete</span>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
             <?php
         }
         ?>
     </div>
+
+    <script src="../assets/js/formSubmit.js"></script>
 </div>

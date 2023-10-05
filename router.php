@@ -69,6 +69,26 @@ switch ($request) {
         }
         break;
 
+    case '/event-update':
+        if ($authenticatedUser) {
+            require __DIR__ . '/views/event/update.php';
+        } else {
+            // redirect the user to the login page if not authenticated
+            header('Location: /login');
+            exit();
+        }
+        break;
+
+    case '/event-delete':
+        if ($authenticatedUser) {
+            require __DIR__ . '/views/event/delete.php';
+        } else {
+            // redirect the user to the login page if not authenticated
+            header('Location: /login');
+            exit();
+        }
+        break;
+
     /**************************************************
      * AUTHENTICATION ACTION ROUTES
      **************************************************/
@@ -95,6 +115,26 @@ switch ($request) {
     case '/event/store':
         if ($authenticatedUser) {
             require __DIR__ . '/actions/event/store.php';
+        } else {
+            // redirect the user to the login page if not authenticated
+            header('Location: /login');
+            exit();
+        }
+        break;
+
+    case '/event/update':
+        if ($authenticatedUser) {
+            require __DIR__ . '/actions/event/update.php';
+        } else {
+            // redirect the user to the login page if not authenticated
+            header('Location: /login');
+            exit();
+        }
+        break;
+
+    case '/event/delete':
+        if ($authenticatedUser) {
+            require __DIR__ . '/actions/event/delete.php';
         } else {
             // redirect the user to the login page if not authenticated
             header('Location: /login');

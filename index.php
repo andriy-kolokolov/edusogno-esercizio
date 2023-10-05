@@ -21,7 +21,7 @@ include 'config/app.php';
 
 <div class="page-wrapper">
     <?php
-    include 'config/debug.php'
+//    include 'config/debug.php'
     ?>
     <?php include 'views/includes/header.php'; ?>
 

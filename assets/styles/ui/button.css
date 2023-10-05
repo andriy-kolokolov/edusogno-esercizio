@@ -17,9 +17,17 @@
     box-shadow: var(--btn-box-shadow);
 }
 
+.btn.btn-sm {
+    font-size: 13px;
+}
+
+.btn.btn-md {
+    font-size: 14px;
+}
+
 .btn.loading:disabled {
     pointer-events: none;
-    opacity: .7;
+    opacity: .65;
 }
 
 .btn-primary {

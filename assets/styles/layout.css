@@ -67,6 +67,10 @@
     }
 }
 
+/*****************************************
+    UTIL
+*****************************************/
+
 .d-flex {
     display: flex;
     width: 100%;
@@ -88,6 +92,10 @@
     justify-content: space-between;
 }
 
+.justify-around {
+    justify-content: space-around;
+}
+
 .gap-1 {
     gap: 5px;
 }
@@ -98,6 +106,22 @@
 
 .gap-3 {
     gap: 15px;
+}
+
+.mt-1 {
+    margin-top: 7px;
+}
+
+.mr-1 {
+    margin-right: 7px;
+}
+
+.mb-1 {
+    margin-bottom: 7px;
+}
+
+.ml-1 {
+    margin-left: 7px;
 }
 
 .mt-2 {

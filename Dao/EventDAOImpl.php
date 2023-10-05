@@ -32,14 +32,79 @@ class EventDAOImpl implements EventDAO
         }
     }
 
-    public function update(int $eventId, string $attendees, string $eventName, string $eventDate)
+    public function update(int $eventId, string $attendees, string $eventName, string $eventDate): bool
     {
-        // TODO: Implement update() method.
+        try {
+            $conn = DbUtil::getConnection();
+            $sql = "UPDATE edusogno_db.eventi SET attendees = ?, nome_evento = ?, data_evento = ? WHERE id = ?";
+            $updateStmt = $conn->prepare($sql);
+            $updateStmt->bind_param("sssi", $attendees, $eventName, $eventDate, $eventId);
+
+            if ($updateStmt->execute()) {
+                $updateStmt->close();
+                return true;
+            } else {
+                $updateStmt->close();
+                return false;
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return false;
+        }
     }
 
-    public function delete(int $eventId)
+    public function delete(int $eventId): bool
     {
-        // TODO: Implement delete() method.
+        try {
+            $conn = DbUtil::getConnection();
+            $sql = "DELETE FROM edusogno_db.eventi WHERE id = ?";
+            $deleteStmt = $conn->prepare($sql);
+            $deleteStmt->bind_param("i", $eventId);
+
+            if ($deleteStmt->execute()) {
+                $deleteStmt->close();
+                return true;
+            } else {
+                $deleteStmt->close();
+                return false;
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public function getEventById(int $eventId): ?Event
+    {
+        try {
+            $connection = DbUtil::getConnection();
+            $sql = "SELECT * FROM edusogno_db.eventi WHERE id = ?";
+            $stmt = $connection->prepare($sql);
+            $stmt->bind_param("i", $eventId);
+
+            if ($stmt->execute()) {
+                $result = $stmt->get_result();
+
+                if ($result->num_rows === 1) {
+                    $row = $result->fetch_assoc();
+                    $attendeesString = $row['attendees'];
+                    $attendees = explode(',', $attendeesString);
+                    $eventName = $row['nome_evento'];
+                    $eventDate = DateTime::createFromFormat('Y-m-d H:i:s', $row['data_evento'])
+                        ->format('d M H:i');
+
+                    $event = new Event($eventId, $attendees, $eventName, $eventDate);
+
+                    $stmt->close();
+                    return $event;
+                }
+            }
+            $stmt->close();
+            return null;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return null;
+        }
     }
 
     public function getAllEvents(): array
