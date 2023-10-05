@@ -64,3 +64,30 @@
         width: var(--col-3);
     }
 }
+
+.d-flex {
+    display: flex;
+    width: 100%;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: space-between;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.gap-1 {
+    gap: 5px;
+}
+.gap-2 {
+    gap: 10px;
+}
+.gap-3 {
+    gap: 15px;
+}

@@ -5,6 +5,7 @@
     border-radius: 7px;
     padding: 7px 16px 7px 10px;
     color: var(--alert-txt);
+    box-shadow: var(--alert-box-shadow);
 }
 
 .alert__message {

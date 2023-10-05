@@ -16,6 +16,11 @@
     font-size: 16px;
 }
 
+.btn.loading:disabled {
+    pointer-events: none;
+    opacity: .7;
+}
+
 .btn-primary {
     background-color: var(--color-primary);
     color: var(--text-color-light);
@@ -39,3 +44,11 @@
     scale: 0.95;
 }
 
+#btn-submit {
+    transition: var(--link-transition);
+}
+
+.btn:disabled {
+    pointer-events: none;
+    opacity: .8;
+}

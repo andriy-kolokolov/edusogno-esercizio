@@ -15,5 +15,8 @@
     echo "Session Variables:<br>";
     print_r($sessionDataArray);
     echo "</pre>";
+
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
     ?>
 </div>

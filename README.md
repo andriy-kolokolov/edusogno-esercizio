@@ -1,7 +1,24 @@
 ## ! Important !
-- In `Util/DbUtil.php` class you must set up your database **_name_**, **_password_**, **_hostname_** and **_db name_**. 
-- You can uncomment `include 'config/debug.php'` in **_index.php_** for debug.
-- On first app start database migrations running automatically. App using `$_SESSION` global variable to store migrations status and prevent running migrations if they already were done.
+### To test password reset using reset link:
+ - Register account using your email.
+ - Receive mail containing link to reset password.
+ - Use it as reset password link 
+
+### How it works?
+- User navigate to `/reset-password` page, types `email`, submitting form.
+- If `email` exists:
+  - `Auth::generatePasswordResetToken($user);` generates token and stores it to database to related `$user`.
+  - PHP Mailer sending mail to `$user` email
+  - If mail sent successfully redirect back to `/reset-password` with success alert.
+- Else if user not find by email, or sending mail fails, it also redirects back to `/reset-password` with fail alert.
+- User using received link containing token as parameter, it takes him to `/change-password` page.
+- `$userDao->getUserByPasswordResetToken($token);` retrieving user by token. 
+- User types new password and submitting.
+- Password changed.
+
+### Install:
+  - App using PHPMailer, install it using `composer install`
+  - In `Util/DbUtil.php` class you must set up your database **_name_**, **_password_**, **_hostname_** and **_db name_**.
 
 ## Versions:
 - PHP 8.1.0
@@ -11,14 +28,18 @@
 Actions:
 - `auth/register`
 - `auth/login`
+- `auth/reset-password`
 
 Views:
 - `/` home
-- `/register` registration
-- `/login` login
-- `/dashboard` dashboard (can access if user authenticated)
+- `/register`
+- `/login` 
+- `/reset-password` 
+- `/dashboard` (can access if user authenticated)
 
 ## Info:
+- You can uncomment `include 'config/debug.php'` in **_index.php_** for debug.
+- On first app start database migrations running automatically. App using `$_SESSION` global variable to store migrations status and prevent running migrations if they already were done.
 - Using session for user authentication.
 - App is using apache server for routing system, and it's redirecting all HTTP requests to the router. For details check: `.htaccess` in root folder.
 - App using DAO Pattern to access db data.

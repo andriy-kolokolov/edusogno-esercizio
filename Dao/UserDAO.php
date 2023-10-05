@@ -13,4 +13,8 @@ interface UserDAO
     public function delete($userId): bool;
 
     public function validateGetUser(string $email, string $password): ?User;
+
+    public function getUserByPasswordResetToken($token): ?User;
+
+//    public function changePassword(string $userEmail, string $newPassword): bool;
 }

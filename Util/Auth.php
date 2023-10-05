@@ -3,6 +3,7 @@
 namespace Util;
 
 use Dao\UserDAOImpl;
+use Exception;
 use Model\User;
 
 class Auth
@@ -51,13 +52,32 @@ class Auth
         session_destroy();
     }
 
-    public static function changePassword(string $email, string $password)
-    {
-        // TODO: implement change password logic
-    }
-
     public static function user(): ?User
     {
         return $_SESSION['user'] ?? null;
+    }
+
+    public static function generatePasswordResetToken(User $user): ?string
+    {
+        try {
+            $userEmail = $user->getEmail();
+
+            $tokenLength = 32;
+            $token = bin2hex(random_bytes($tokenLength));
+            $timestamp = time();
+            $token .= '_' . $timestamp;
+
+            $db = DbUtil::getConnection();
+            $sql = "UPDATE edusogno_db.utenti SET reset_token = ? WHERE email = ?";
+            $stmt = $db->prepare($sql);
+            $stmt->bind_param("ss", $token, $userEmail);
+            $stmt->execute();
+            $stmt->close();
+
+            return $token;
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            return null;
+        }
     }
 }

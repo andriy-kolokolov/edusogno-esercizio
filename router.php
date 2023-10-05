@@ -20,17 +20,21 @@ switch ($request) {
             header('Location: /dashboard');
             exit();
         } else {
-            require __DIR__ . '/views/login.php';
+            require __DIR__ . '/views/auth/login.php';
         }
         break;
 
+    case '/reset-password':
+        require __DIR__ . '/views/auth/reset-password.php';
+        break;
+
     case '/register':
-        // Check if the user is authenticated, and if so, redirect to the dashboard
+        // Check user auth, authenticated users can't register, redirect to the dashboard
         if ($authenticatedUser) {
             header('Location: /dashboard');
             exit();
         } else {
-            require __DIR__ . '/views/register.php';
+            require __DIR__ . '/views/auth/register.php';
         }
         break;
 
@@ -58,11 +62,29 @@ switch ($request) {
     case '/auth/logout':
         require __DIR__ . '/actions/auth/logout.php';
         break;
+
+    case '/auth/reset-password':
+        require __DIR__ . '/actions/auth/reset-password.php';
+        break;
+
+    case '/auth/change-password':
+        require __DIR__ . '/actions/auth/change-password.php';
+        break;
+
     /**************************************************
-    * OTHER
-    **************************************************/
+     * Handling URLs with a "token" parameter
+     *************************************************/
     default:
-        http_response_code(404);
-        require __DIR__ . '/views/404.php';
+        // check if request contains a "token" parameter
+        $query = parse_url($request, PHP_URL_QUERY);
+        parse_str($query, $params);
+
+        if (isset($params['reset-password-token'])) {
+            $_SESSION['reset-password-token'] = $params['reset-password-token'];
+            require __DIR__ . '/views/auth/change-password.php';
+        } else {
+            http_response_code(404);
+            require __DIR__ . '/views/404.php';
+        }
         break;
 }

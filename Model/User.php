@@ -8,6 +8,7 @@ class User
     private string $lastname;
     private string $email;
     private string $hashedPassword;
+    private ?string $resetToken;
 
     public function __construct($name, $lastname, $email, $hashedPassword)
     {
@@ -15,6 +16,7 @@ class User
         $this->lastname = $lastname;
         $this->email = $email;
         $this->hashedPassword = $hashedPassword;
+        $this->resetToken = null;
     }
 
     public function getName(): string
@@ -55,5 +57,15 @@ class User
     public function setHashedPassword(string $hashedPassword): void
     {
         $this->hashedPassword = $hashedPassword;
+    }
+
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setResetToken(?string $resetToken): void
+    {
+        $this->resetToken = $resetToken;
     }
 }

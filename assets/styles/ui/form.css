@@ -52,7 +52,7 @@
 
 .form-label {
     position: absolute;
-    top: 9px;
+    top: 13px;
     left: 0;
     margin-left: 12px;
     color: rgba(0, 0, 0, 0.5);
@@ -66,10 +66,3 @@
     background-color: var(--bg-primary-color);
     transform: translate(5px, -20px);
 }
-
-.form-buttons {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
