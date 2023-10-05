@@ -35,6 +35,7 @@ Views:
 - `/register`
 - `/login` 
 - `/reset-password` 
+- `/change-password`
 - `/dashboard` (can access if user authenticated)
 
 ## Info:

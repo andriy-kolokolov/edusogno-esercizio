@@ -32,9 +32,10 @@
 }
 
 .card-footer {
+    min-height: 15px;
     text-align: center;
 }
 
 .card:hover {
-    box-shadow: var(--card-box-shadow-hover);
+    /*box-shadow: var(--card-box-shadow-hover);*/
 }

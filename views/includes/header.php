@@ -19,6 +19,9 @@ use Util\Auth;
                         <a class="item__link" href="/dashboard">Dashboard</a>
                     </li>
                     <li class="list__item">
+                        <a class="item__link" href="/edit-profile">Edit Profile</a>
+                    </li>
+                    <li class="list__item">
                         <form action="auth/logout" method="post">
                             <input class="btn btn-danger" type="submit" name="logout" value="Logout">
                         </form>

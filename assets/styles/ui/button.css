@@ -14,6 +14,7 @@
     transition: var(--link-transition);
     border-width: 0;
     font-size: 16px;
+    box-shadow: var(--btn-box-shadow);
 }
 
 .btn.loading:disabled {
@@ -38,6 +39,7 @@
 
 .btn:hover {
     opacity: 1;
+    box-shadow: var(--btn-box-shadow-hover);
 }
 
 .btn:active {

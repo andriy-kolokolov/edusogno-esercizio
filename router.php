@@ -48,6 +48,16 @@ switch ($request) {
             exit();
         }
         break;
+
+    case '/edit-profile':
+        if ($authenticatedUser) {
+            require __DIR__ . '/views/edit-profile.php';
+        } else {
+            // redirect the user to the login page if not authenticated
+            header('Location: /login');
+            exit();
+        }
+        break;
     /**************************************************
      * AUTHENTICATION ACTION ROUTES
      **************************************************/

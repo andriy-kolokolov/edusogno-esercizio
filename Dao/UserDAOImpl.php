@@ -178,11 +178,11 @@ class UserDAOImpl implements UserDAO
             $updateStmt->close();
 
             // remove the token from the database
-            $deleteTokenSql = "DELETE FROM edusogno_db.utenti WHERE reset_token = ?";
-            $deleteTokenStmt = $conn->prepare($deleteTokenSql);
-            $deleteTokenStmt->bind_param("s", $userToken);
-            $deleteTokenStmt->execute();
-            $deleteTokenStmt->close();
+            $updateTokenSql = "UPDATE edusogno_db.utenti SET reset_token = NULL WHERE reset_token = ?";
+            $updateTokenStmt = $conn->prepare($updateTokenSql);
+            $updateTokenStmt->bind_param("s", $userToken);
+            $updateTokenStmt->execute();
+            $updateTokenStmt->close();
 
             return true;
 
