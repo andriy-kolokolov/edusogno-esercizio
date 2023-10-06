@@ -12,7 +12,7 @@ $isValidToken = $userDao->getUserByPasswordResetToken($token);
 <div class="page-content">
     <div class="form-wrapper">
         <?php if ($isValidToken) { ?>
-            <form class="form" action="auth/change-password" method="POST">
+            <form class="form form-submit" action="auth/change-password" method="POST">
                 <h2 class="form-title">Reset password</h2>
                 <div class="form-group">
                     <input class="form-input" id="new-password" type="password" name="new_password" placeholder="New Password" required>
@@ -20,7 +20,9 @@ $isValidToken = $userDao->getUserByPasswordResetToken($token);
                 </div>
                 <div class="form-group">
                     <div class="form-buttons center">
-                        <input class="btn btn-primary" type="submit" value="Reset Password">
+                        <button class="btn btn-submit btn-primary" type="submit">
+                            <span>Reset Password</span>
+                        </button>
                     </div>
                 </div>
             </form>

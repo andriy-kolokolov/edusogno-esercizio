@@ -10,7 +10,7 @@ unset($_SESSION['not-existing-email']);
 
 <div class="page-content">
     <div class="form-wrapper">
-        <form id="form-submit" class="form" action="auth/reset-password" method="post">
+        <form class="form-submit" action="auth/reset-password" method="post">
 
             <h2 class="form-title">Reset password</h2>
             <?php if ($emailSent == "fail") { ?>
@@ -49,12 +49,11 @@ unset($_SESSION['not-existing-email']);
 
             <div class="form-group d-flex justify-center">
                 <div class="form-buttons">
-                    <button id="btn-submit" class="btn btn-primary d-flex gap-2 align-center" type="submit">
+                    <button class="btn btn-submit btn-primary d-flex gap-2 align-center" type="submit">
                         <span>Send reset password link</span>
                     </button>
                 </div>
             </div>
         </form>
     </div>
-    <script src="../../assets/js/formSubmit.js"></script>
 </div>

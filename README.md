@@ -1,8 +1,9 @@
 ## ! Important !
-### To test password reset using reset link:
- - In `Util/Mailer` set your google email and app password: https://myaccount.google.com/apppasswords?pli=1&rapt=AEjHL4NeyYHdOUZrwnscDxeQdJ78oB_UWXJePYdma5HyoDVBcawKf1thF34e0hDCcM8NSc6QADgTKhavprHjYspoMgwWOOEJPw
+### For password reset by link reset and sending alerts to attendees set up this:
+ - In `Util/Mailer` set your `GOOGLE_EMAIL` and `GOOGLE_APP_PASSWORD`: https://myaccount.google.com/apppasswords?pli=1&rapt=AEjHL4NeyYHdOUZrwnscDxeQdJ78oB_UWXJePYdma5HyoDVBcawKf1thF34e0hDCcM8NSc6QADgTKhavprHjYspoMgwWOOEJPw
+ - When creating event, as one of attendees use your mail to test alert for new created or updated events.
 
-### How `Mailer` works?
+### How reset password using `Mailer` works?
 - Register using your email.
 - User navigate to `/reset-password` page, types `email`, submitting form.
 - If `email` exists:

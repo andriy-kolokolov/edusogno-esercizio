@@ -84,16 +84,6 @@ switch ($request) {
         }
         break;
 
-    case '/event-delete':
-        if ($authenticatedUser) {
-            require __DIR__ . '/views/event/delete.php';
-        } else {
-            // redirect the user to the login page if not authenticated
-            header('Location: /login');
-            exit();
-        }
-        break;
-
     /**************************************************
      * AUTHENTICATION ACTION ROUTES
      **************************************************/

@@ -21,7 +21,7 @@ include 'config/app.php';
 
 <div class="page-wrapper">
     <?php
-    include 'config/debug.php'
+//    include 'config/debug.php'
     ?>
     <?php include 'views/includes/header.php'; ?>
 
@@ -37,6 +37,7 @@ include 'config/app.php';
 </div>
 
 <script src="assets/js/script.js"></script>
+<script src="assets/js/formSubmit.js"></script>
 </body>
 </html>
 

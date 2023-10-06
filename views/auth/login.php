@@ -46,7 +46,7 @@ unset($_SESSION['reset-password-status']);
                 </div>
             </div>
             <div class="form-group d-flex flex-column gap-1 txt-sm">
-                <div>Admin email <strong>'admin@admin.com'</strong> Admin pass:<strong>'admin'</strong></div>
+                <div>Admin email <strong>'admin@admin.com'</strong>Admin pass:<strong>'admin'</strong></div>
             </div>
             <div class="form-group">
                 <div class="form-buttons d-flex justify-between gap-3">

@@ -25,7 +25,7 @@ $eventDate = DateTime::createFromFormat('d M H:i', $event->getEventDate())
 
 <div class="page-content">
     <div class="form-wrapper">
-        <form id="form-submit" class="form" action="/event/update" method="POST">
+        <form class="form-submit" action="/event/update" method="POST">
             <h2 class="form-title">Update event</h2>
             <?php if ($eventUpdateStatus == 'fail') { ?>
                 <div class="form-group">
@@ -60,7 +60,7 @@ $eventDate = DateTime::createFromFormat('d M H:i', $event->getEventDate())
             </div>
             <div class="form-group">
                 <div class="form-buttons d-flex justify-center">
-                    <button id="btn-submit" class="btn btn-primary" type="submit">
+                    <button class="btn btn-submit btn-primary" type="submit">
                         <span>Update event</span>
                     </button>
                 </div>
@@ -69,7 +69,6 @@ $eventDate = DateTime::createFromFormat('d M H:i', $event->getEventDate())
         </form>
     </div>
 
-    <script src="../../assets/js/formSubmit.js"></script>
 </div>
 
 

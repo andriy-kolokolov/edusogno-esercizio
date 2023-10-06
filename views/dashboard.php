@@ -9,17 +9,22 @@ $updateEventStatus = $_SESSION['event-update-status'] ?? null;
 $updatedEventName = $_SESSION['updated-event'] ?? null;
 $deleteEventStatus = $_SESSION['event-delete-status'] ?? null;
 $deletedEventName = $_SESSION['deleted-event'] ?? null;
+$changePasswordStatus = $_SESSION['reset-password-status'] ?? null;
 
 unset($_SESSION['login_status']);
 unset($_SESSION['event-update-status']);
 unset($_SESSION['event-create-status']);
 unset($_SESSION['event-delete-status']);
+unset($_SESSION['reset-password-status']);
 
 $eventDAO = new EventDAOImpl();
 $allEvents = $eventDAO->getAllEvents();
 ?>
 
 <div class="page-content">
+
+    <h1 class="page-title"><?php echo Auth::user()->getRole() == 'admin' ? 'DASHBOARD' : 'Events' ?></h1>
+
     <?php if ($loginStatus == "success") { ?>
         <?php
         echo '<div class="alert alert-success">';
@@ -28,12 +33,20 @@ $allEvents = $eventDAO->getAllEvents();
         ?>
     <?php } ?>
 
-    <h1 class="page-title"><?php echo Auth::user()->getRole() == 'admin' ? 'DASHBOARD' : 'Events' ?></h1>
-
     <?php if (Auth::user()->getRole() == 'admin') { ?>
         <div class="form-wrapper">
             <div class="form-group mb-3 d-flex justify-center">
                 <a href="/event-create" class="btn btn-primary">Add event</a>
+            </div>
+        </div>
+    <?php } ?>
+
+    <?php if ($changePasswordStatus == "success") { ?>
+        <div class="form-group">
+            <div class="alert alert-success">
+                <div class="alert__message">
+                    Password updated successfully
+                </div>
             </div>
         </div>
     <?php } ?>
@@ -95,15 +108,15 @@ $allEvents = $eventDAO->getAllEvents();
 
                     <div class="card-footer"><strong>Event Date:</strong> <?php echo $event->getEventDate(); ?></div>
                     <div class="d-flex justify-around">
-                        <form id="form-submit" method="POST" action="/event-update">
+                        <form class="form-submit" method="POST" action="/event-update">
                             <input type="hidden" name="event_id" value="<?php echo $event->getEventId(); ?>">
-                            <button id="btn-submit" type="submit" class="btn btn-sm btn-primary ">
+                            <button type="submit" class="btn-submit btn btn-sm btn-primary ">
                                 <span>Update</span>
                             </button>
                         </form>
-                        <form id="form-submit-1" method="POST" action="/event/delete">
+                        <form class="form-submit" method="POST" action="/event/delete">
                             <input type="hidden" name="event_id" value="<?php echo $event->getEventId(); ?>">
-                            <button id="btn-submit-1" type="submit" class="btn btn-sm btn-danger">
+                            <button  type="submit" class="btn-submit btn btn-sm btn-danger">
                                 <span>Delete</span>
                             </button>
                         </form>
@@ -114,6 +127,4 @@ $allEvents = $eventDAO->getAllEvents();
         }
         ?>
     </div>
-
-    <script src="../assets/js/formSubmit.js"></script>
 </div>
