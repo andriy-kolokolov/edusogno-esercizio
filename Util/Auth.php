@@ -29,11 +29,11 @@ class Auth
         }
     }
 
-    public static function register(string $name, string $lastname, string $email, string $password): bool
+    public static function register(string $role, string $name, string $lastname, string $email, string $password): bool
     {
         $userDao = new UserDAOImpl();
         // check if user exists, create and return User object if exists, else return false.
-        $user = $userDao->createGetUser($name, $lastname, $email, $password);
+        $user = $userDao->createGetUser($role, $name, $lastname, $email, $password);
 
         if ($user) {
             session_regenerate_id(true);
@@ -79,5 +79,10 @@ class Auth
             echo $e->getMessage();
             return null;
         }
+    }
+
+    public static function isAdmin(User $user): bool
+    {
+        return $user->getRole() == 'admin';
     }
 }

@@ -27,13 +27,16 @@ $allEvents = $eventDAO->getAllEvents();
         echo '</div>';
         ?>
     <?php } ?>
-    <h1 class="page-title">DASHBOARD</h1>
 
-    <div class="form-wrapper">
-        <div class="form-group mb-3 d-flex justify-center">
-            <a href="/event-create" class="btn btn-primary">Add event</a>
+    <h1 class="page-title"><?php echo Auth::user()->getRole() == 'admin' ? 'DASHBOARD' : 'Events' ?></h1>
+
+    <?php if (Auth::user()->getRole() == 'admin') { ?>
+        <div class="form-wrapper">
+            <div class="form-group mb-3 d-flex justify-center">
+                <a href="/event-create" class="btn btn-primary">Add event</a>
+            </div>
         </div>
-    </div>
+    <?php } ?>
 
     <?php if ($eventCreateStatus == "success") { ?>
         <div class="form-group">
@@ -95,7 +98,7 @@ $allEvents = $eventDAO->getAllEvents();
                         <form id="form-submit" method="POST" action="/event-update">
                             <input type="hidden" name="event_id" value="<?php echo $event->getEventId(); ?>">
                             <button id="btn-submit" type="submit" class="btn btn-sm btn-primary ">
-                                <span">Update</span>
+                                <span>Update</span>
                             </button>
                         </form>
                         <form id="form-submit-1" method="POST" action="/event/delete">

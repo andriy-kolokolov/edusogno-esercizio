@@ -24,7 +24,7 @@ unset($_SESSION['reset-password-status']);
                     </div>
                 </div>
             <?php } ?>
-             <?php if ($resetPasswordStatus == "fail") { ?>
+            <?php if ($resetPasswordStatus == "fail") { ?>
                 <div class="form-group">
                     <div class="alert alert-fail">
                         <div class="alert__message">Error occurred resetting password.</div>
@@ -44,6 +44,9 @@ unset($_SESSION['reset-password-status']);
                     <a class="btn btn-primary" href="/register">Register account</a>
                     <input class="btn btn-primary" type="submit" value="Login">
                 </div>
+            </div>
+            <div class="form-group d-flex flex-column gap-1 txt-sm">
+                <div>Admin email <strong>'admin@admin.com'</strong> Admin pass:<strong>'admin'</strong></div>
             </div>
             <div class="form-group">
                 <div class="form-buttons d-flex justify-between gap-3">

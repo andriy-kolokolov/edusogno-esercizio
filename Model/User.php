@@ -4,19 +4,32 @@ namespace Model;
 
 class User
 {
+
+    private string $role;
     private string $name;
     private string $lastname;
     private string $email;
     private string $hashedPassword;
     private ?string $resetToken;
 
-    public function __construct($name, $lastname, $email, $hashedPassword)
+    public function __construct($role, $name, $lastname, $email, $hashedPassword)
     {
+        $this->role = $role;
         $this->name = $name;
         $this->lastname = $lastname;
         $this->email = $email;
         $this->hashedPassword = $hashedPassword;
         $this->resetToken = null;
+    }
+
+    public function getRole(): string
+    {
+        return $this->role;
+    }
+
+    public function setRole(string $role): void
+    {
+        $this->role = $role;
     }
 
     public function getName(): string

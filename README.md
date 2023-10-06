@@ -1,10 +1,9 @@
 ## ! Important !
 ### To test password reset using reset link:
- - Register account using your email.
- - Receive mail containing link to reset password.
- - Use it as reset password link 
+ - In `Util/Mailer` set your google email and app password: https://myaccount.google.com/apppasswords?pli=1&rapt=AEjHL4NeyYHdOUZrwnscDxeQdJ78oB_UWXJePYdma5HyoDVBcawKf1thF34e0hDCcM8NSc6QADgTKhavprHjYspoMgwWOOEJPw
 
-### How it works?
+### How `Mailer` works?
+- Register using your email.
 - User navigate to `/reset-password` page, types `email`, submitting form.
 - If `email` exists:
   - `Auth::generatePasswordResetToken($user);` generates token and stores it to database to related `$user`.

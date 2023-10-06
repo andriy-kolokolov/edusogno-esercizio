@@ -11,7 +11,12 @@ switch ($request) {
      **************************************************/
     case '':
     case '/':
-        require __DIR__ . '/views/index.php';
+        if ($authenticatedUser) {
+            header('Location: /dashboard');
+        } else {
+            header('Location: /login');
+        }
+        exit();
         break;
 
     case '/login':

@@ -9,42 +9,41 @@ use Util\DbUtil;
 
 class UserDAOImpl implements UserDAO
 {
-    /**
-     * @throws Exception
-     */
-    public function createGetUser(string $name, string $lastname, string $email, string $password): User|bool
+    public function createGetUser(string $role, string $name, string $lastname, string $email, string $password): User|bool
     {
-        $conn = DbUtil::getConnection();
-        // check by email if the user already exists
-        $checkSql = "SELECT email FROM edusogno_db.utenti WHERE email = ?";
-        $checkStmt = $conn->prepare($checkSql);
-        // using bind_param() to protect from SQL injection
-        $checkStmt->bind_param("s", $email);
-        $checkStmt->execute();
-        $checkStmt->store_result();
+        try {
+            $conn = DbUtil::getConnection();
+            // check by email if the user already exists
+            $checkSql = "SELECT email FROM edusogno_db.utenti WHERE email = ?";
+            $checkStmt = $conn->prepare($checkSql);
+            // using bind_param() to protect from SQL injection
+            $checkStmt->bind_param("s", $email);
+            $checkStmt->execute();
+            $checkStmt->store_result();
 
-        if ($checkStmt->num_rows > 0) {
-            // if user exists, return false
-            $checkStmt->close();
+            if ($checkStmt->num_rows > 0) {
+                // if user exists, return false
+                $checkStmt->close();
+                return false;
+            }
+
+            // insert new user
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $insertSql = "INSERT INTO edusogno_db.utenti (role, nome, cognome, email, password) VALUES (?, ?, ?, ?, ?)";
+            $insertStmt = $conn->prepare($insertSql);
+            $insertStmt->bind_param("sssss", $role, $name, $lastname, $email, $hashedPassword);
+            $insertStmt->execute();
+            $insertStmt->close();
+
+            return new User($role, $name, $lastname, $email, $hashedPassword);
+
+        }catch (Exception $e) {
+            echo $e->getMessage();
             return false;
-        }
-
-        // insert new user
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $insertSql = "INSERT INTO edusogno_db.utenti (nome, cognome, email, password) VALUES (?, ?, ?, ?)";
-        $insertStmt = $conn->prepare($insertSql);
-        $insertStmt->bind_param("ssss", $name, $lastname, $email, $hashedPassword);
-
-        if ($insertStmt->execute()) {
-            $insertStmt->close();
-            return new User($name, $lastname, $email, $hashedPassword);
-        } else {
-            $insertStmt->close();
-            throw new Exception('Error occurred inserting user in database');
         }
     }
 
-    public function create(string $name, string $lastname, string $email, string $password): void
+    public function create(string $role, string $name, string $lastname, string $email, string $password): void
     {
         try {
             $conn = DbUtil::getConnection();
@@ -62,9 +61,9 @@ class UserDAOImpl implements UserDAO
 
             // insert new user
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-            $insertSql = "INSERT INTO edusogno_db.utenti (nome, cognome, email, password) VALUES (?, ?, ?, ?)";
+            $insertSql = "INSERT INTO edusogno_db.utenti (role, nome, cognome, email, password) VALUES (?, ?, ?, ?, ?)";
             $insertStmt = $conn->prepare($insertSql);
-            $insertStmt->bind_param("ssss", $name, $lastname, $email, $hashedPassword);
+            $insertStmt->bind_param("sssss", $role, $name, $lastname, $email, $hashedPassword);
 
             $insertStmt->close();
         } catch (Exception $e) {
@@ -86,15 +85,15 @@ class UserDAOImpl implements UserDAO
     {
         try {
             $conn = DbUtil::getConnection();
-            $stmt = $conn->prepare("SELECT nome, cognome, email, password FROM edusogno_db.utenti WHERE email = ?");
+            $stmt = $conn->prepare("SELECT role, nome, cognome, email, password FROM edusogno_db.utenti WHERE email = ?");
             $stmt->bind_param("s", $email);
             $stmt->execute();
-            $stmt->bind_result($name, $lastname, $dbEmail, $hashedDbPassword);
+            $stmt->bind_result($role, $name, $lastname, $dbEmail, $hashedDbPassword);
             $stmt->fetch();
             $stmt->close();
             // verify hashed password in db
             if (password_verify($password, $hashedDbPassword)) {
-                return new User($name, $lastname, $dbEmail, $hashedDbPassword);
+                return new User($role, $name, $lastname, $dbEmail, $hashedDbPassword);
             } else {
                 return null;
             }
@@ -108,15 +107,15 @@ class UserDAOImpl implements UserDAO
     {
         try {
             $conn = DbUtil::getConnection();
-            $stmt = $conn->prepare("SELECT nome, cognome, email, password FROM edusogno_db.utenti WHERE email = ?");
+            $stmt = $conn->prepare("SELECT role, nome, cognome, email, password FROM edusogno_db.utenti WHERE email = ?");
             $stmt->bind_param("s", $email);
             $stmt->execute();
-            $stmt->bind_result($name, $lastname, $email, $hashedPassword);
+            $stmt->bind_result($role, $name, $lastname, $email, $hashedPassword);
 
             if ($stmt->fetch()) {
                 $stmt->execute();
                 $stmt->close();
-                return new User($name, $lastname, $email, $hashedPassword);
+                return new User($role, $name, $lastname, $email, $hashedPassword);
             } else {
                 $stmt->close();
                 return null;
@@ -144,6 +143,7 @@ class UserDAOImpl implements UserDAO
                 $stmt->close();
 
                 return new User(
+                    $userData['role'],
                     $userData['nome'],
                     $userData['cognome'],
                     $userData['email'],

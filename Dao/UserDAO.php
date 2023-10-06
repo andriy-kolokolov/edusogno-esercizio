@@ -6,7 +6,7 @@ use Model\User;
 
 interface UserDAO
 {
-    public function createGetUser(string $name, string $lastname, string $email, string $password): User|bool;
+    public function createGetUser(string $role, string $name, string $lastname, string $email, string $password): User|bool;
 
     public function update(int $userId, string $name, string $lastname, string $email, string $password): bool;
 

@@ -37,8 +37,8 @@ class Mailer
             $mail->SMTPSecure = "tls";
             $mail->Port = 587;
             $mail->Host = "smtp.gmail.com";
-            $mail->Username = "koloandre22@gmail.com";  // FROM
-            $mail->Password = "pnly mega nrgb yfgn";
+            $mail->Username = "";  // EMAIL
+            $mail->Password = ""; // APP PASSWORD
 
             // Sender and recipient
             $mail->SetFrom("no-reply@edusogno.com", "Edusogno");

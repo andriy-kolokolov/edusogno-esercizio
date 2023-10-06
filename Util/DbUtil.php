@@ -10,7 +10,7 @@ class DbUtil
     private static string $host = 'localhost';
     private static string $username = 'root';
     private static string $password = 'root';
-    private static string $database = 'edusogno_db';
+    private static string $database = 'edusogno_db'; // DON'T CHANGE
     private static ?mysqli $connection = null;
 
     private static function connect(): void
@@ -42,6 +42,7 @@ class DbUtil
         $usersExists = $connection->query("SHOW TABLES LIKE 'utenti'")->num_rows > 0;
         $eventsExists = $connection->query("SHOW TABLES LIKE 'eventi'")->num_rows > 0;
 
+        $adminPassword = password_hash('admin', PASSWORD_DEFAULT);
         $password1 = password_hash('Edusogno123', PASSWORD_DEFAULT);
         $password2 = password_hash('Edusogno?123', PASSWORD_DEFAULT);
         $password3 = password_hash('EdusognoCiao', PASSWORD_DEFAULT);
@@ -50,6 +51,7 @@ class DbUtil
             $sqlScript = "
             CREATE TABLE IF NOT EXISTS utenti (
                 id int NOT NULL AUTO_INCREMENT,
+                role varchar(75),
                 nome varchar(45),
                 cognome varchar(45),
                 email varchar(255),
@@ -79,12 +81,13 @@ class DbUtil
                 ('jane.smith@example.com,john.doe@example.com', 'Event 9', '2023-09-05 15:00'),
                 ('alice.johnson@example.com,bob.wilson@example.com', 'Event 30', '2023-10-20 17:30');
             
-            INSERT INTO edusogno_db.utenti (nome, cognome, email, password)
+            INSERT INTO edusogno_db.utenti (role, nome, cognome, email, password)
             VALUES
-                ('Marco', 'Rossi', 'ulysses200915@varen8.com', '$password1'),
-                ('Filippo', 'D’Amelio', 'qmonkey14@falixiao.com', '$password2'),
-                ('Gian Luca', 'Carta', 'mavbafpcmq@hitbase.net', '$password3'),
-                ('Stella', 'De Grandis', 'dgipolga@edume.me', '$password4');
+                ('admin' ,'Admin', 'User', 'admin@admin.com', '$adminPassword'),
+                ('view_only' ,'Marco', 'Rossi', 'ulysses200915@varen8.com', '$password1'),
+                ('view_only', 'Filippo', 'D’Amelio', 'qmonkey14@falixiao.com', '$password2'),
+                ('view_only', 'Gian Luca', 'Carta', 'mavbafpcmq@hitbase.net', '$password3'),
+                ('view_only', 'Stella', 'De Grandis', 'dgipolga@edume.me', '$password4');
             ";
 
             $queries = explode(';', $sqlScript);
