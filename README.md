@@ -28,6 +28,9 @@ Actions:
 - `auth/register`
 - `auth/login`
 - `auth/reset-password`
+- `event/create`
+- `event/update`
+- `event/delete`
 
 Views:
 - `/` home
@@ -36,6 +39,8 @@ Views:
 - `/reset-password` 
 - `/change-password`
 - `/dashboard` (can access if user authenticated)
+- `/event-create`
+- `/event-update`
 
 ## Info:
 - You can uncomment `include 'config/debug.php'` in **_index.php_** for debug.
