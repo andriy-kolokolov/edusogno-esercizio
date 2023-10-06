@@ -5,6 +5,7 @@
 ## ! Important !
 ### To test password reset using reset link:
  - In `Util/Mailer` set your google email and app password: https://myaccount.google.com/apppasswords?pli=1&rapt=AEjHL4NeyYHdOUZrwnscDxeQdJ78oB_UWXJePYdma5HyoDVBcawKf1thF34e0hDCcM8NSc6QADgTKhavprHjYspoMgwWOOEJPw
+ - **_Only if db tables non yet exist_**, on first app launch database migrations running automatically.
 
 ### How `Mailer` works?
 - Register using your email.
