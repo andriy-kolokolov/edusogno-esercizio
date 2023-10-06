@@ -107,20 +107,24 @@ $allEvents = $eventDAO->getAllEvents();
                     </div>
 
                     <div class="card-footer"><strong>Event Date:</strong> <?php echo $event->getEventDate(); ?></div>
-                    <div class="d-flex justify-around">
-                        <form class="form-submit" method="POST" action="/event-update">
-                            <input type="hidden" name="event_id" value="<?php echo $event->getEventId(); ?>">
-                            <button type="submit" class="btn-submit btn btn-sm btn-primary ">
-                                <span>Update</span>
-                            </button>
-                        </form>
-                        <form class="form-submit" method="POST" action="/event/delete">
-                            <input type="hidden" name="event_id" value="<?php echo $event->getEventId(); ?>">
-                            <button  type="submit" class="btn-submit btn btn-sm btn-danger">
-                                <span>Delete</span>
-                            </button>
-                        </form>
-                    </div>
+
+                    <!--    RENDER ACTION BUTTONS FOR ADMIN    -->
+                    <?php if (Auth::user()->getRole() == 'admin') { ?>
+                        <div class="d-flex justify-around">
+                            <form class="form-submit" method="POST" action="/event-update">
+                                <input type="hidden" name="event_id" value="<?php echo $event->getEventId(); ?>">
+                                <button type="submit" class="btn-submit btn btn-sm btn-primary ">
+                                    <span>Update</span>
+                                </button>
+                            </form>
+                            <form class="form-submit" method="POST" action="/event/delete">
+                                <input type="hidden" name="event_id" value="<?php echo $event->getEventId(); ?>">
+                                <button type="submit" class="btn-submit btn btn-sm btn-danger">
+                                    <span>Delete</span>
+                                </button>
+                            </form>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
             <?php
