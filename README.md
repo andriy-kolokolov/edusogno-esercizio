@@ -1,3 +1,7 @@
+### Install:
+  - App using PHPMailer, install it using `composer install`
+  - In `Util/DbUtil.php` class you must set up your database **_user name_**, **_password_** and **_hostname_**.
+
 ## ! Important !
 ### To test password reset using reset link:
  - In `Util/Mailer` set your google email and app password: https://myaccount.google.com/apppasswords?pli=1&rapt=AEjHL4NeyYHdOUZrwnscDxeQdJ78oB_UWXJePYdma5HyoDVBcawKf1thF34e0hDCcM8NSc6QADgTKhavprHjYspoMgwWOOEJPw
@@ -14,10 +18,6 @@
 - `$userDao->getUserByPasswordResetToken($token);` retrieving user by token. 
 - User types new password and submitting.
 - Password changed.
-
-### Install:
-  - App using PHPMailer, install it using `composer install`
-  - In `Util/DbUtil.php` class you must set up your database **_name_**, **_password_**, **_hostname_** and **_db name_**.
 
 ## Versions:
 - PHP 8.1.0
