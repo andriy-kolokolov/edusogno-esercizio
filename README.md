@@ -28,20 +28,20 @@
 Actions:
 - `auth/register`
 - `auth/login`
-- `auth/reset-password`
-- `event/create`
-- `event/update`
-- `event/delete`
+- `auth/reset-password` 
+- `event/create` (admin role only!)
+- `event/update` (admin role only!)
+- `event/delete` (admin role only!)
 
 Views:
-- `/` home
+- `/` redirects to `/login` if not authenticated, else redirects to `/dashboard`
 - `/register`
 - `/login` 
-- `/reset-password` 
-- `/change-password`
-- `/dashboard` (can access if user authenticated)
-- `/event-create`
-- `/event-update`
+- `/reset-password`
+- `/change-password` (only having reset link containing correct token parameter)
+- `/dashboard` (authenticated user only)
+- `/event-create` (admin role only!)
+- `/event-update` (admin role only!)
 
 ## Info:
 - You can uncomment `include 'config/debug.php'` in **_index.php_** for debug.
