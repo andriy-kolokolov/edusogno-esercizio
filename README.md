@@ -1,4 +1,4 @@
-## ! Important !
+## Simple Dashboard from scratch using PHP
 ### For password reset by link reset and sending alerts to attendees set up this:
  - In `Util/Mailer` set your `GOOGLE_EMAIL` and `GOOGLE_APP_PASSWORD`: https://myaccount.google.com/apppasswords?pli=1&rapt=AEjHL4NeyYHdOUZrwnscDxeQdJ78oB_UWXJePYdma5HyoDVBcawKf1thF34e0hDCcM8NSc6QADgTKhavprHjYspoMgwWOOEJPw
  - When creating event, as one of attendees use your mail to test alert for new created or updated events.
