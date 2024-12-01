@@ -16,8 +16,8 @@ class Mailer
 
     const EMAIL_SENT_FAIL = "fail";
     const EMAIL_SENT_SUCCESS = "success";
-    const GOOGLE_EMAIL = ""; // if you dont have one try: 'koloandre22@gmail.com'
-    const GOOGLE_APP_PASSWORD = ""; // if you dont have one try: 'jady qzck yzxh gwmj'
+    const GOOGLE_EMAIL = ""; 
+    const GOOGLE_APP_PASSWORD = "";
 
     private static function initGetMailer(): ?PHPMailer
     {
